@@ -96,3 +96,21 @@ az webapp log config \
     --application-logging true \
     --failed-request-tracing true
 ```
+
+### RETRIEVE DIAGNOSTIC LOGS
+```powershell
+$ws-name = "contoso-web"
+Save-AzureWebSiteLog `
+	-Name $ws-name `
+	-Output d:\weblogs.zip
+```
+
+```bash
+resourceGroupName = "contoso"
+webAppName = "contose-web"
+
+az webapp log download \
+    --resource-group $resourceGroupName \
+    --name $webAppName \
+    --log-file ./webapplogs.zip
+```
