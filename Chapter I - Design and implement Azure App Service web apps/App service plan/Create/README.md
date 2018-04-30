@@ -23,7 +23,7 @@ New-AzureRmAppServicePlan `
     -WorkerSize $workerSize
 ```
 
-```console
+```shell
 # Define properties for the app service plan
 resourceGroupName = "contoso"
 appServicePlanName = "contoso"
