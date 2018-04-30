@@ -10,9 +10,9 @@ $webAppName = "contose-hr-app"
 
 # Create a new web app using an existing app service plan
 New-AzureRmWebApp
-    -ResourceGroupName $resourceGroupName
-    -Location $location
-    -AppServicePlan $appServicePlanName
+    -ResourceGroupName $resourceGroupName `
+    -Location $location `
+    -AppServicePlan $appServicePlanName `
     -Name $webAppName
 ```
 
@@ -25,6 +25,6 @@ webAppName = "contose-hr-app"
 # Create a new web app using an existing app service plan
 az webapp create \
     --resource-group $resourceGroupName \
-    --name $webAppName
+    --name $webAppName \
     --plan #appServicePlanName
 ```
