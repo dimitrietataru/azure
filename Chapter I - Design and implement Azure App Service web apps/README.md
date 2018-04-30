@@ -13,5 +13,5 @@
 |                          | Swap                 | Swap-AzureRmWebAppSlot             | az webapp deployment slot swap   |
 |       Traffic manager    | Create               | New-AzureRmTrafficManagerProfile   | ---                              |
 |                          | Add endpoints        | New-AzureRmTrafficManagerEndpoint  | ---                              |
-|                          | Remove endpoints     | Remove-AzureRmTrafficManagerEnd... | ---                              |
+|                          | Remove endpoints     | Remove-AzureRmTrafficManagerEndp.. | ---                              |
 |                          | Disable endpoints    | Disable-AzureRmTrafficManagerEnd.. | ---                              |
