@@ -70,3 +70,29 @@ az webapp config appsettings set \
     --name $webAppName \
     --settings settings3=value-3
 ```
+
+### ENABLE DIAGNOSTIC LOGS
+```powershell
+$resourceGroupName = "contoso"
+$webAppName = "contose-hr-app"
+$webApp = Get-AzureRmWebApp `
+    -ResourceGroupName $resourceGroupName `
+    -Name $name `
+	
+Set-AzureRmWebApp
+    -ResourceGroupName $resourceGroupName `
+    -Name $webAppName `
+    -RequestTracingEnabled $     `
+	-HttpLoggingEnabled $    
+```
+
+```bash
+resourceGroupName = "contoso"
+webAppName = "contose-hr-app"
+
+az webapp log config \
+    --resource-group $resourceGroupName \
+    --name $webAppName \
+	--application-logging      \
+	--failed-request-tracing     
+```

@@ -1,11 +1,12 @@
 # CHAPTER I
 
-|            ##            | Action        | PowerShell                       | Azure CLI                        |
-|:------------------------:|:--------------|:---------------------------------|:---------------------------------|
-|      Resource group      | Create        | New-AzureRmResourceGroup         | az group create                  |
-|     App service plan     | Create        | New-AzureRmAppServicePlan        | az appservice plan create        |
-|         Web app          | Get           | Get-AzureRmWebApp                | ---                              |
-|                          | Create        | New-AzureRmWebApp                | az webapp create                 |
-|                          | Configure     | Set-AzureRmWebApp                | az webapp config appsettings set |
-|       Deployment slot    | Create        | New-AzureRmWebAppSlot            | az webapp deployment slot create |
-|                          | Swap          | Swap-AzureRmWebAppSlot           | az webapp deployment slot swap   |
+|            ##            | Action                             | PowerShell                       | Azure CLI                        |
+|:------------------------:|:-----------------------------------|:---------------------------------|:---------------------------------|
+|      Resource group      | Create                             | New-AzureRmResourceGroup         | az group create                  |
+|     App service plan     | Create                             | New-AzureRmAppServicePlan        | az appservice plan create        |
+|         Web app          | Get                                | Get-AzureRmWebApp                | ---                              |
+|                          | Create                             | New-AzureRmWebApp                | az webapp create                 |
+|                          | Configure application settings     | Set-AzureRmWebApp                | az webapp config appsettings set |
+|                          | Enable diagnostic logs             | Set-AzureRmWebApp                | az webapp log config             |
+|       Deployment slot    | Create                             | New-AzureRmWebAppSlot            | az webapp deployment slot create |
+|                          | Swap                               | Swap-AzureRmWebAppSlot           | az webapp deployment slot swap   |
