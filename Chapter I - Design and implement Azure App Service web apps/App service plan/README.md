@@ -1,7 +1,7 @@
 # APP SERVICE PLAN
 
-## CREATE
-```posh
+### CREATE
+```powershell
 # Define properties for the app service plan
 $resourceGroupName = "contoso"
 $appServicePlanName = "contoso"
@@ -23,7 +23,7 @@ New-AzureRmAppServicePlan `
     -WorkerSize $workerSize
 ```
 
-```shell
+```cli
 # Define properties for the app service plan
 resourceGroupName = "contoso"
 appServicePlanName = "contoso"
@@ -41,12 +41,4 @@ az appservice plan create \
     --name $appServicePlanName \
     --location $location \
     --sku $sku
-```
-
-```powershell
-test
-```
-
-```cli
-test
 ```
