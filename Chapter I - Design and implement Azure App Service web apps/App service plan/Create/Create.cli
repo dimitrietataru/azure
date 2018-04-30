@@ -12,6 +12,5 @@ az group create \
 az appservice plan create \
     --resource-group $resourceGroupName \
     --name $appServicePlanName \
-	--location $location \
-	--sku $sku
-	
+    --location $location \
+    --sku $sku
