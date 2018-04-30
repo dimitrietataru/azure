@@ -1,7 +1,7 @@
 # CHAPTER I
 
 |            ##            | Action               | PowerShell                         | Azure CLI                        |
-|:------------------------:|:---------------------|:-----------------------------------|:---------------------------------|
+|:------------------------:|:--------------------:|:-----------------------------------|:---------------------------------|
 |      Resource group      | Create               | New-AzureRmResourceGroup           | az group create                  |
 |     App service plan     | Create               | New-AzureRmAppServicePlan          | az appservice plan create        |
 |         Web app          | Get                  | Get-AzureRmWebApp                  | ---                              |
