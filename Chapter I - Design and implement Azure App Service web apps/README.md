@@ -8,5 +8,6 @@
 |                          | Create               | New-AzureRmWebApp                | az webapp create                 |
 |                          | Application settings | Set-AzureRmWebApp                | az webapp config appsettings set |
 |                          | Diagnostic logs      | Set-AzureRmWebApp                | az webapp log config             |
+|                          | Diagnostic logs get  | Save-AzureWebSiteLog             | az webapp log download           |
 |       Deployment slot    | Create               | New-AzureRmWebAppSlot            | az webapp deployment slot create |
 |                          | Swap                 | Swap-AzureRmWebAppSlot           | az webapp deployment slot swap   |
