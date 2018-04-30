@@ -34,7 +34,7 @@ Swap-AzureRmWebAppSlot
     -ResourceGroupName $resourceGroupName `
     -Name $name `
     -SourceSlotName $stagingSlotName `
-	-DestinationSlotName $productionSlotName
+    -DestinationSlotName $productionSlotName
 ```
 
 ```bash
@@ -48,6 +48,6 @@ az webapp deployment slot swap
     --resource-group $resourceGroupName \
     --name $webAppName \
     --slot $stagingSlotName \
-	--target-slot $productionSlotName \
-	--action $swapAction
+    --target-slot $productionSlotName \
+    --action $swapAction
 ```
