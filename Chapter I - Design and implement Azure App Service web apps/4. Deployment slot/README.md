@@ -22,3 +22,32 @@ az webapp deployment slot create
     --name $webAppName \
     --slot $stagingSlotName
 ```
+
+### SWAP
+```powershell
+$resourceGroupName = "contoso"
+$webAppName = "contoso-hr-app"
+$stagingSlotName = "Staging"
+$productionSlotName = "Production"
+
+Swap-AzureRmWebAppSlot
+    -ResourceGroupName $resourceGroupName `
+    -Name $name `
+    -SourceSlotName $stagingSlotName `
+	-DestinationSlotName $productionSlotName
+```
+
+```bash
+resourceGroupName = "contoso"
+webAppName = "contoso-hr-app"
+stagingSlotName = "Staging"
+productionSlotName = "Production"
+swapAction = "swap"
+
+az webapp deployment slot swap
+    --resource-group $resourceGroupName \
+    --name $webAppName \
+    --slot $stagingSlotName \
+	--target-slot $productionSlotName \
+	--action $swapAction
+```
