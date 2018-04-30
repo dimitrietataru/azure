@@ -15,12 +15,10 @@ New-AzureRmWebApp
 ```
 
 ```bash
-# Define properties for the app service plan
 resourceGroupName = "contoso"
 appServicePlanName = "contoso"
 webAppName = "contose-hr-app"
 
-# Create a new web app using an existing app service plan
 az webapp create \
     --resource-group $resourceGroupName \
     --name $webAppName \
