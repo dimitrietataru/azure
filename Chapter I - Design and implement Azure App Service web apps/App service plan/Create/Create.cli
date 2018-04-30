@@ -1,0 +1,17 @@
+#!/bin/bash
+
+resourceGroupName = "contoso"
+appServicePlanName = "contoso"
+location = "westus"
+sku = "P1"
+
+az group create \
+    --location $location \
+    --name $resourceGroupName
+
+az appservice plan create \
+    --resource-group $resourceGroupName \
+    --name $appServicePlanName \
+	--location $location \
+	--sku $sku
+	
