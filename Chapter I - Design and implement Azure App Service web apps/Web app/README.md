@@ -2,13 +2,11 @@
 
 ### CREATE
 ```powershell
-# Define properties for the app service plan
 $resourceGroupName = "contoso"
 $appServicePlanName = "contoso"
 $location = "West US"
 $webAppName = "contose-hr-app"
 
-# Create a new web app using an existing app service plan
 New-AzureRmWebApp
     -ResourceGroupName $resourceGroupName `
     -Location $location `
@@ -26,5 +24,5 @@ webAppName = "contose-hr-app"
 az webapp create \
     --resource-group $resourceGroupName \
     --name $webAppName \
-    --plan #appServicePlanName
+    --plan $appServicePlanName
 ```

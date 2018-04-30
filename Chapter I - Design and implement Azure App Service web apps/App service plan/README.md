@@ -2,7 +2,6 @@
 
 ### CREATE
 ```powershell
-# Define properties for the app service plan
 $resourceGroupName = "contoso"
 $appServicePlanName = "contoso"
 $location = "West US"
@@ -24,7 +23,6 @@ New-AzureRmAppServicePlan `
 ```
 
 ```bash
-# Define properties for the app service plan
 resourceGroupName = "contoso"
 appServicePlanName = "contoso"
 location = "westus"
