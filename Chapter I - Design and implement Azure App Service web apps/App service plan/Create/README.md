@@ -23,7 +23,7 @@ New-AzureRmAppServicePlan `
     -WorkerSize $workerSize
 ```
 
-```posh
+```sh
 #!/bin/bash
 
 # Define properties for the app service plan
