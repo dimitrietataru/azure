@@ -78,12 +78,12 @@ $webAppName = "contose-hr-app"
 $webApp = Get-AzureRmWebApp `
     -ResourceGroupName $resourceGroupName `
     -Name $name `
-	
+    
 Set-AzureRmWebApp
     -ResourceGroupName $resourceGroupName `
     -Name $webAppName `
-    -RequestTracingEnabled $     `
-	-HttpLoggingEnabled $    
+    -RequestTracingEnabled $true `
+    -HttpLoggingEnabled $true
 ```
 
 ```bash
@@ -93,6 +93,6 @@ webAppName = "contose-hr-app"
 az webapp log config \
     --resource-group $resourceGroupName \
     --name $webAppName \
-	--application-logging      \
-	--failed-request-tracing     
+    --application-logging true \
+    --failed-request-tracing true
 ```
