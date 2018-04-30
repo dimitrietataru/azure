@@ -100,9 +100,10 @@ az webapp log config \
 ### RETRIEVE DIAGNOSTIC LOGS
 ```powershell
 $ws-name = "contoso-web"
+
 Save-AzureWebSiteLog `
-	-Name $ws-name `
-	-Output d:\weblogs.zip
+    -Name $ws-name `
+    -Output d:\weblogs.zip
 ```
 
 ```bash
