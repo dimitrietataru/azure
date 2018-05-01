@@ -8,25 +8,25 @@
 param($domain,$password)
 $smPassword = (ConvertTo-SecureString $password -AsPlainText -Force)
 Install-WindowsFeature
-	-Name "AD-Domain-Services" `
-	-IncludeManagementTools `
-	-IncludeAllSubFeature
+    -Name "AD-Domain-Services" `
+    -IncludeManagementTools `
+    -IncludeAllSubFeature
 Install-ADDSForest
-	-DomainName $domain `
-	-DomainMode Win2012 `
-	-ForestMode Win2012 `
-	-Force `
-	-SafeModeAdministratorPassword $smPassword
+    -DomainName $domain `
+    -DomainMode Win2012 `
+    -ForestMode Win2012 `
+    -Force `
+    -SafeModeAdministratorPassword $smPassword
 
 $rgName = "Contoso"
 $scriptName = "deploy-ad.ps1"
 $scriptUri = http://$storageAccount.blob.core.windows.net/scripts/$scriptName
 $scriptArgument = "contoso.com $password"
 Set-AzureRmVMCustomScriptExtension
-	-ResourceGroupName $rgName `
-	-VMName $vmName `
-	-FileUri $scriptUri `
-	-Argument "$domain
+    -ResourceGroupName $rgName `
+    -VMName $vmName `
+    -FileUri $scriptUri `
+    -Argument "$domain
 ```
 
 ```bash
@@ -40,9 +40,9 @@ apachectl restart
 rgName="Contoso"
 vmName="LinuxWebServer"
 az vm extension set
-	--resource-group $rgName 
-	--vm-name $vmName 
-	--name $scriptName
-	--publisher Microsoft.Azure.Extensions 
-	--settings ./cseconfig.json
+    --resource-group $rgName 
+    --vm-name $vmName 
+    --name $scriptName
+    --publisher Microsoft.Azure.Extensions 
+    --settings ./cseconfig.json
 ```
