@@ -1,5 +1,16 @@
 # CREATE VIRTUAL MACHINES
 
+### Create simple VM
+```bash
+vmName="myUbuntuVM"
+imageName="UbuntuLTS"
+az vm create
+	--resource-group $rgName
+	--name $vmName
+	--image $imageName
+	--generate-ssh-keys
+```
+
 ### Create resource group
 ```powershell
 $rgName = "Contoso"
@@ -17,6 +28,7 @@ az group create
 	--name $rgName
 	--location $location
 ```
+
 
 ### Create virtual networks
 ```powershell
@@ -42,6 +54,31 @@ $vnet = New-AzureRmVirtualNetwork -Name $VNETName `
     -Subnet $subnets
 ```
 
+```bash
+vnetName="ExamRefVNET-CLI"
+vnetAddressPrefix="10.0.0.0/16"
+az network vnet create
+	--resource-group $rgName
+	-n ExamRefVNET-CLI
+	--address-prefixes $vnetAddressPrefix
+	-l $location
+	
+Subnet1Name="Subnet-1"
+Subnet2Name="Subnet-2"
+Subnet1Prefix="10.0.1.0/24"
+Subnet2Prefix="10.0.2.0/24"
+az network vnet subnet create
+	--resource-group $rgName
+	--vnet-name $vnetName
+	-n $Subnet1Name
+	--address-prefix $Subnet1Prefix
+az network vnet subnet create
+	--resource-group $rgName
+	--vnet-name $vnetName
+	-n $Subnet2Name
+	--address-prefix $Subnet2Prefix
+```
+
 ### Create storage account
 ```powershell
 $saName = "examrefstoragew123123"
@@ -54,7 +91,13 @@ $blobEndpoint = $storageAcc.PrimaryEndpoints.Blob.ToString()
 ```
 
 ```bash
-
+storageAccountName="examrefstoragew124124"
+az storage account create
+	-n $storageAccountName
+	--sku Standard_LRS
+	-l $location
+	--kind Storage
+	--resource-group $rgName
 ```
 
 ### Create availability set
@@ -66,7 +109,14 @@ $avSet = New-AzureRmAvailabilitySet
 ```
 
 ```bash
-
+avSetName="WebAVSET"
+az vm availability-set create
+	-n $avSetName
+	-g $rgName
+	--platform-fault-domain-count 3
+	--platform-update-domain-count 5
+	--unmanaged
+	-l $location
 ```
 
 ### Create public IP address
@@ -80,7 +130,14 @@ $pip = New-AzureRmPublicIpAddress
 ```
 
 ```bash
-
+dnsRecord="examrefdns123123"
+ipName="ExamRefCLI-IP"
+az network public-ip create
+	-n $ipName
+	-g $rgName
+	--allocation-method Dynamic
+	--dns-name $dnsRecord
+	-l $location
 ```
 
 ### Create network security group
@@ -106,9 +163,41 @@ $nsg = New-AzureRmNetworkSecurityGroup
 ```
 
 ```bash
-
+nsgName="webnsg"
+az network nsg create
+	-n $nsgName 
+	-g $rgName 
+	-l $location
+	
+# Create a rule to allow in SSH
+az network nsg rule create
+	-n SSH
+	--nsg-name $nsgName
+	--priority 100
+	-g $rgName
+	--access Allow 
+	--description "SSH Access" 
+	--direction Inbound 
+	--protocol Tcp 
+	--destinationaddress-prefix "*" 
+	--destination-port-range 22 
+	--source-address-prefix "*" 
+	--sourceport-range "*"
+# Create a rule to allow in HTTP
+az network nsg rule create 
+	-n HTTP 
+	--nsg-name webnsg 
+	--priority 101 
+	-g $rgName 
+	--access Allow 
+	--description "Web Access" 
+	--direction Inbound 
+	--protocol Tcp 
+	--destinationaddress-prefix "*" 
+	--destination-port-range 80 
+	--source-address-prefix "*" 
+	--sourceport-range "*"
 ```
-
 
 ### Create network interface
 ```powershell
@@ -123,7 +212,15 @@ $nic = New-AzureRmNetworkInterface
 ```
 
 ```bash
-
+nicname="WebVMNic1"
+az network nic create
+	-n $nicname 
+	-g $rgName 
+	--subnet $Subnet1Name 
+	--network-securitygroup $nsgName
+	--vnet-name $vnetName 
+	--public-ip-address $ipName 
+	-l $location
 ```
 
 
@@ -136,11 +233,6 @@ $vm = New-AzureRmVMConfig
 	-AvailabilitySetId $avSet.Id
 ```
 
-```bash
-
-```
-
-
 ### VM Operating system
 ```powershell
 $cred = Get-Credential
@@ -150,10 +242,6 @@ Set-AzureRmVMOperatingSystem
 	-Credential $cred `
 	-ProvisionVMAgent `
 	-VM $vm
-```
-
-```bash
-
 ```
 
 ### VM source image
@@ -176,10 +264,6 @@ Set-AzureRmVMOSDisk
 	-VM $vm
 ```
 
-```bash
-
-```
-
 ### VM provisioning
 ```powershell
 New-AzureRmVM
@@ -189,5 +273,23 @@ New-AzureRmVM
 ```
 
 ```bash
-
+imageName="Canonical:UbuntuServer:17.04:latest"
+vmSize="Standard_DS1_V2"
+containerName=vhds
+user=demouser
+vmName="WebVM"
+osDiskName="WEBVM1-OSDISK.vhd"
+az vm create
+	-n $vmName 
+	-g $rgName 
+	-l $location 
+	--size $vmSize 
+	--availability-set $avSetName 
+	--nics $nicname 
+	--image $imageName 
+	--use-unmanaged-disk 
+	--os-disk-name $osDiskName 
+	--storage-account $storageAccountName 
+	--storage-container-name $containerName 
+	--generate-ssh-keys
 ```
