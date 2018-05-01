@@ -315,3 +315,5 @@ az vm create
     --storage-container-name $containerName 
     --generate-ssh-keys
 ```
+
+

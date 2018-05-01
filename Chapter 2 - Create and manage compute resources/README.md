@@ -20,3 +20,5 @@
 |                          | Create               | New-AzureRmStorageAccount          | az storate account create        |
 |     Availability set     | Create               | New-AzureRmAvailabilitySet         | az vm availability-set create    |
 |        Custom script     | Desired state config | Set-AzureRmVmDscExtension          | ??                               |
+
+

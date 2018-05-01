@@ -46,3 +46,5 @@ az vm extension set
     --publisher Microsoft.Azure.Extensions 
     --settings ./cseconfig.json
 ```
+
+
