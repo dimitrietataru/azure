@@ -21,3 +21,8 @@
 |      Storage account     | Get                  | Get-AzureRmStorageAccount          | ---                              |
 |                          | Create               | New-AzureRmStorageAccount          | az storate account create        |
 |     Availability set     | Create               | New-AzureRmAvailabilitySet         | az vm availability-set create    |
+|    Container services    | Create               | ---                                | az acr create                    |
+|                          | Login                | ---                                | az acr login                     |
+|                          | List                 | ---                                | az acr list                      |
+|                          | Configure            | ---                                | az acs kubernetes                |
+|                          | Verify               | ---                                | kubectl get nodes                |
