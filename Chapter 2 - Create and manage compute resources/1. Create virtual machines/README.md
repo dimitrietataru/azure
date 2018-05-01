@@ -211,7 +211,6 @@ $nic = New-AzureRmNetworkInterface
     -PublicIpAddressId $pip.Id `
     -NetworkSecurityGroupId $nsg.ID
 ```
-
 ```bash
 nicname="WebVMNic1"
 az network nic create
@@ -272,37 +271,6 @@ New-AzureRmVM
     -Location $location
     -VM $vm
 ```
-
-```bash
-imageName="Canonical:UbuntuServer:17.04:latest"
-vmSize="Standard_DS1_V2"
-containerName=vhds
-user=demouser
-vmName="WebVM"
-osDiskName="WEBVM1-OSDISK.vhd"
-az vm create
-    -n $vmName 
-    -g $rgName 
-    -l $location 
-    --size $vmSize 
-    --availability-set $avSetName 
-    --nics $nicname 
-    --image $imageName 
-    --use-unmanaged-disk 
-    --os-disk-name $osDiskName 
-    --storage-account $storageAccountName 
-    --storage-container-name $containerName 
-    --generate-ssh-keys
-```
-
-### Stop a VM
-```powershell
-New-AzureRmVM
-    -ResourceGroupName $rgName
-    -Location $location
-    -VM $vm
-```
-
 ```bash
 imageName="Canonical:UbuntuServer:17.04:latest"
 vmSize="Standard_DS1_V2"
