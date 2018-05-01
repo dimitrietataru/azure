@@ -7,7 +7,7 @@
 $rgName = "ExamRefRG"
 $avSetName = "WebAVSet"
 $location = "West US"
-New-AzureRmAvailabilitySet
+New-AzureRmAvailabilitySet `
     -ResourceGroupName $rgName `
     -Name $avSetName `
     -Location $location `
@@ -20,9 +20,9 @@ New-AzureRmAvailabilitySet
 rgName="ExamRefRGCLI"
 avSetName="WebAVSet"
 location="WestUS"
-az vm availability-set create
-    --name $avSetName
-    --resource-group $rgName
-    --platformfault-domain-count 3
+az vm availability-set create \
+    --name $avSetName \
+    --resource-group $rgName \
+    --platformfault-domain-count 3 \
     --platform-update-domain-count 10
 ```

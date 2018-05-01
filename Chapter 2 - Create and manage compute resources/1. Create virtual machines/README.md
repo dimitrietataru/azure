@@ -6,11 +6,11 @@
 ```bash
 vmName="myUbuntuVM"
 imageName="UbuntuLTS"
-az vm create
-    --resource-group $rgName
-    --name $vmName
-    --image $imageName
-    --generate-ssh-keys
+az vm create \
+    --resource-group $rgName \
+    --name $vmName \
+    --image $imageName \
+    --generate-ssh-keys \
 ```
 
 
@@ -19,16 +19,16 @@ az vm create
 $rgName = "Contoso"
 $location = "West US"
 
-New-AzureRmResourceGroup
-    -Name $rgName
-    -Location $location
+New-AzureRmResourceGroup `
+    -Name $rgName `
+    -Location $location `
 ```
 
 ```bash
 rgName="Contoso"
 location="WestUS"
-az group create
-    --name $rgName
+az group create \ 
+    --name $rgName \
     --location $location
 ```
 
@@ -44,10 +44,10 @@ $vnetAddresssSpace = "10.0.0.0/16"
 $VNETName = "ExamRefVNET-PS"
 
 $subnets = @()
-$subnets += New-AzureRmVirtualNetworkSubnetConfig 
+$subnets += New-AzureRmVirtualNetworkSubnetConfig `
     -Name $subnet1Name `
     -AddressPrefix $subnet1AddressPrefix
-$subnets += New-AzureRmVirtualNetworkSubnetConfig
+$subnets += New-AzureRmVirtualNetworkSubnetConfig `
     -Name $subnet2Name `
     -AddressPrefix $subnet2AddressPrefix
 
@@ -61,25 +61,25 @@ $vnet = New-AzureRmVirtualNetwork -Name $VNETName `
 ```bash
 vnetName="ExamRefVNET-CLI"
 vnetAddressPrefix="10.0.0.0/16"
-az network vnet create
-    --resource-group $rgName
-    -n ExamRefVNET-CLI
-    --address-prefixes $vnetAddressPrefix
+az network vnet create \ 
+    --resource-group $rgName \
+    -n ExamRefVNET-CLI \
+    --address-prefixes $vnetAddressPrefix \
     -l $location
     
 Subnet1Name="Subnet-1"
 Subnet2Name="Subnet-2"
 Subnet1Prefix="10.0.1.0/24"
 Subnet2Prefix="10.0.2.0/24"
-az network vnet subnet create
-    --resource-group $rgName
-    --vnet-name $vnetName
-    -n $Subnet1Name
+az network vnet subnet create \
+    --resource-group $rgName \
+    --vnet-name $vnetName \
+    -n $Subnet1Name \
     --address-prefix $Subnet1Prefix
-az network vnet subnet create
-    --resource-group $rgName
-    --vnet-name $vnetName
-    -n $Subnet2Name
+az network vnet subnet create \
+    --resource-group $rgName \ 
+    --vnet-name $vnetName \
+    -n $Subnet2Name \ 
     --address-prefix $Subnet2Prefix
 ```
 
@@ -88,7 +88,7 @@ az network vnet subnet create
 ### Create storage account
 ```powershell
 $saName = "examrefstoragew123123"
-$storageAcc = New-AzureRmStorageAccount
+$storageAcc = New-AzureRmStorageAccount `
     -ResourceGroupName $rgName `
     -Name $saName `
     -Location $location `
@@ -98,11 +98,11 @@ $blobEndpoint = $storageAcc.PrimaryEndpoints.Blob.ToString()
 
 ```bash
 storageAccountName="examrefstoragew124124"
-az storage account create
-    -n $storageAccountName
-    --sku Standard_LRS
-    -l $location
-    --kind Storage
+az storage account create \ 
+    -n $storageAccountName \
+    --sku Standard_LRS \
+    -l $location \
+    --kind Storage \
     --resource-group $rgName
 ```
 
@@ -110,7 +110,7 @@ az storage account create
 
 ### Create availability set
 ```powershell
-$avSet = New-AzureRmAvailabilitySet
+$avSet = New-AzureRmAvailabilitySet `
     -ResourceGroupName $rgName `
     -Name $avSet `
     -Location $location
@@ -118,12 +118,12 @@ $avSet = New-AzureRmAvailabilitySet
 
 ```bash
 avSetName="WebAVSET"
-az vm availability-set create
-    -n $avSetName
-    -g $rgName
-    --platform-fault-domain-count 3
-    --platform-update-domain-count 5
-    --unmanaged
+az vm availability-set create \ 
+    -n $avSetName \
+    -g $rgName \
+    --platform-fault-domain-count 3 \
+    --platform-update-domain-count 5 \
+    --unmanaged \
     -l $location
 ```
 
@@ -131,7 +131,7 @@ az vm availability-set create
 
 ### Create public IP address
 ```powershell
-$pip = New-AzureRmPublicIpAddress
+$pip = New-AzureRmPublicIpAddress `
     -Name $ipName `
     -ResourceGroupName $rgName `
     -Location $location `
@@ -142,11 +142,11 @@ $pip = New-AzureRmPublicIpAddress
 ```bash
 dnsRecord="examrefdns123123"
 ipName="ExamRefCLI-IP"
-az network public-ip create
-    -n $ipName
-    -g $rgName
-    --allocation-method Dynamic
-    --dns-name $dnsRecord
+az network public-ip create \
+    -n $ipName \
+    -g $rgName \
+    --allocation-method Dynamic \
+    --dns-name $dnsRecord \
     -l $location
 ```
 
@@ -156,7 +156,7 @@ az network public-ip create
 ```powershell
 $nsgName = "ExamRefNSG"
 $nsgRules = @()
-$nsgRules += New-AzureRmNetworkSecurityRuleConfig
+$nsgRules += New-AzureRmNetworkSecurityRuleConfig `
     -Name "RDP" `
     -Description "RemoteDesktop" `
     -Protocol Tcp `
@@ -167,7 +167,7 @@ $nsgRules += New-AzureRmNetworkSecurityRuleConfig
     -Access Allow `
     -Priority 110 `
     -Direction Inbound
-$nsg = New-AzureRmNetworkSecurityGroup
+$nsg = New-AzureRmNetworkSecurityGroup `
     -ResourceGroupName $rgName `
     -Name $nsgName `
     -SecurityRules $nsgRules `
@@ -176,39 +176,39 @@ $nsg = New-AzureRmNetworkSecurityGroup
 
 ```bash
 nsgName="webnsg"
-az network nsg create
-    -n $nsgName 
-    -g $rgName 
+az network nsg create \
+    -n $nsgName \
+    -g $rgName \
     -l $location
     
 # Create a rule to allow in SSH
-az network nsg rule create
-    -n SSH
-    --nsg-name $nsgName
-    --priority 100
-    -g $rgName
-    --access Allow 
-    --description "SSH Access" 
-    --direction Inbound 
-    --protocol Tcp 
-    --destinationaddress-prefix "*" 
-    --destination-port-range 22 
-    --source-address-prefix "*" 
-    --sourceport-range "*"
+az network nsg rule create \
+    -n SSH \
+    --nsg-name $nsgName \
+    --priority 100 \
+    -g $rgName \
+    --access Allow  \
+    --description "SSH Access"  \
+    --direction Inbound  \
+    --protocol Tcp  \
+    --destinationaddress-prefix "*" \
+    --destination-port-range 22 \
+    --source-address-prefix "*" \
+    --sourceport-range "*"  \
 
 # Create a rule to allow in HTTP
-az network nsg rule create 
-    -n HTTP 
-    --nsg-name webnsg 
-    --priority 101 
-    -g $rgName 
-    --access Allow 
-    --description "Web Access" 
-    --direction Inbound 
-    --protocol Tcp 
-    --destinationaddress-prefix "*" 
-    --destination-port-range 80 
-    --source-address-prefix "*" 
+az network nsg rule create \
+    -n HTTP \
+    --nsg-name webnsg \
+    --priority 101 \
+    -g $rgName \
+    --access Allow \
+    --description "Web Access" \
+    --direction Inbound \
+    --protocol Tcp \
+    --destinationaddress-prefix "*" \
+    --destination-port-range 80 \
+    --source-address-prefix "*" \
     --sourceport-range "*"
 ```
 
@@ -217,7 +217,7 @@ az network nsg rule create
 ### Create network interface
 ```powershell
 $nicName = "ExamRefVM-NIC"
-$nic = New-AzureRmNetworkInterface
+$nic = New-AzureRmNetworkInterface `
     -Name $nicName `
     -ResourceGroupName $rgName `
     -Location $location `
@@ -228,13 +228,13 @@ $nic = New-AzureRmNetworkInterface
 
 ```bash
 nicname="WebVMNic1"
-az network nic create
-    -n $nicname 
-    -g $rgName 
-    --subnet $Subnet1Name 
-    --network-securitygroup $nsgName
-    --vnet-name $vnetName 
-    --public-ip-address $ipName 
+az network nic create \
+    -n $nicname \
+    -g $rgName \
+    --subnet $Subnet1Name \
+    --network-securitygroup $nsgName \
+    --vnet-name $vnetName \
+    --public-ip-address $ipName \
     -l $location
 ```
 
@@ -243,8 +243,8 @@ az network nic create
 ### VM configure
 ```powershell
 $vmSize = "Standard_DS1_V2"
-$vm = New-AzureRmVMConfig
-    -VMName $vmName
+$vm = New-AzureRmVMConfig `
+    -VMName $vmName `
     -VMSize $vmSize `
     -AvailabilitySetId $avSet.Id
 ```
@@ -254,7 +254,7 @@ $vm = New-AzureRmVMConfig
 ### VM Operating system
 ```powershell
 $cred = Get-Credential
-Set-AzureRmVMOperatingSystem 
+Set-AzureRmVMOperatingSystem `
     -Windows `
     -ComputerName $vmName `
     -Credential $cred `
@@ -269,7 +269,7 @@ Set-AzureRmVMOperatingSystem
 $pubName = "MicrosoftWindowsServer"
 $offerName = "WindowsServer"
 $skuName = "2016-Datacenter"
-Set-AzureRmVMSourceImage
+Set-AzureRmVMSourceImage `
     -PublisherName $pubName `
     -Offer $offerName `
     -Skus $skuName `
@@ -277,7 +277,7 @@ Set-AzureRmVMSourceImage
 
 $osDiskName = "ExamRefVM-osdisk"
 $osDiskUri = $blobEndpoint + "vhds/" + $osDiskName + ".vhd"
-Set-AzureRmVMOSDisk 
+Set-AzureRmVMOSDisk `
     -Name $osDiskName `
     -VhdUri $osDiskUri `
     -CreateOption fromImage `
@@ -288,9 +288,9 @@ Set-AzureRmVMOSDisk
 
 ### VM provisioning
 ```powershell
-New-AzureRmVM
-    -ResourceGroupName $rgName
-    -Location $location
+New-AzureRmVM `
+    -ResourceGroupName $rgName `
+    -Location $location `
     -VM $vm
 ```
 
@@ -301,17 +301,17 @@ containerName=vhds
 user=demouser
 vmName="WebVM"
 osDiskName="WEBVM1-OSDISK.vhd"
-az vm create
-    -n $vmName 
-    -g $rgName 
-    -l $location 
-    --size $vmSize 
-    --availability-set $avSetName 
-    --nics $nicname 
-    --image $imageName 
-    --use-unmanaged-disk 
-    --os-disk-name $osDiskName 
-    --storage-account $storageAccountName 
-    --storage-container-name $containerName 
+az vm create \
+    -n $vmName \
+    -g $rgName \
+    -l $location \
+    --size $vmSize \
+    --availability-set $avSetName \
+    --nics $nicname \
+    --image $imageName \
+    --use-unmanaged-disk \
+    --os-disk-name $osDiskName \
+    --storage-account $storageAccountName \
+    --storage-container-name $containerName \
     --generate-ssh-keys
 ```

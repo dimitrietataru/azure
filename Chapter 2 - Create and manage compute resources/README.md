@@ -10,6 +10,8 @@
 |                          | Source image         | Set-AzureRmVMSourceImage           | az vm image list                 |
 |                          | Stop                 | Stop-AzureRmVM                     | az vm dealocate                  |
 |       Advanced VM        | Custom script        | Set-AzureRmVmCustomScriptExtension | az vm extension set              |
+|                          | Resize               | Update-AzureRmVM                   | az vm resize                     |
+|       VM scale set       | Create               | New-AzureRmVirtualMachine          | az vm create                     |
 |      Virtual network     | Create               | New-AzureRmVirtualNetwork          | az network vnet create           |
 |                          | Create subnet        | New-AzureRmVirtualNetworkSubnetC.. | az network vnet subnet create    |
 |                          | Create public IP     | New-AzureRmPublicIpAddress         | az network public-ip create      |
@@ -19,4 +21,3 @@
 |      Storage account     | Get                  | Get-AzureRmStorageAccount          | ---                              |
 |                          | Create               | New-AzureRmStorageAccount          | az storate account create        |
 |     Availability set     | Create               | New-AzureRmAvailabilitySet         | az vm availability-set create    |
-|        Custom script     | Desired state config | Set-AzureRmVmDscExtension          | ??                               |
