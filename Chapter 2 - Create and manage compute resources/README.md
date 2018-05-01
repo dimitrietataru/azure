@@ -3,6 +3,7 @@
 |            ##            | Action               | PowerShell                         | Azure CLI                        |
 |:------------------------:|:--------------------:|:-----------------------------------|:---------------------------------|
 |      Virtual machine     | Create               | New-AzureRmVirtualMachine          | az vm create                     |
+|                          | Create from ARM      | New-AzureRmResourceGroupDeployment | az group deployment create       |
 |                          | Configure            | New-AzureRmVMConfig                | ---                              |
 |                          | Operating system     | New-AzureRmVMOperatingSystem       | ---                              |
 |                          | OS disk config       | Set-AzureRmVMOSDisk                | ---                              |
@@ -18,18 +19,5 @@
 |                          | Rule config          | New-AzureRmNetworkSecurityRuleCo.. | az network nsg rule create       |
 |     Network interface    | Create               | New-AzureRmNetworkInterface        | az network nic create            |
 
-
-
-
-
 |                          | Desired state config | Set-AzureRmVmDscExtension          | ??                               |
 |                          | Custom script        | Set-AzureRmVmCustomScriptExtension | az vm extension set              |
-
-
-
-
-
-
-
-
-| Virtual machine from ARM | Create               | New-AzureRmResourceGroupDeployment | ??                               |
