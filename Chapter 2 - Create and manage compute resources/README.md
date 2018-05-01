@@ -3,7 +3,7 @@
 |            ##            | Action               | PowerShell                         | Azure CLI                        |
 |:------------------------:|:--------------------:|:-----------------------------------|:---------------------------------|
 |      Virtual machine     | Create               | New-AzureRmVirtualMachine          | az vm create                     |
-|                          | Create from ARM      | New-AzureRmResourceGroupDeplo..    | az group deployment create       |
+|                          | Create from ARM      | New-AzureRmResourceGroupDeployment | az group deployment create       |
 |                          | Configure            | New-AzureRmVMConfig                | ---                              |
 |                          | Operating system     | New-AzureRmVMOperatingSystem       | ---                              |
 |                          | OS disk config       | Set-AzureRmVMOSDisk                | ---                              |
@@ -19,6 +19,4 @@
 |      Storage account     | Get                  | Get-AzureRmStorageAccount          | ---                              |
 |                          | Create               | New-AzureRmStorageAccount          | az storate account create        |
 |     Availability set     | Create               | New-AzureRmAvailabilitySet         | az vm availability-set create    |
-
-
 |        Custom script     | Desired state config | Set-AzureRmVmDscExtension          | ??                               |
