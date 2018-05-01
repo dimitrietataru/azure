@@ -3,6 +3,7 @@
 
 
 ### Create VM from ARM
+```powershell
 # Create a Resource Group
 $rgName = "Contoso"
 $location = "WestUs"
