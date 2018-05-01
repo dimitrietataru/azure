@@ -37,5 +37,3 @@ az group deployment create
     --resource-group $rgName
     --templateuri $templateUri
 ```
-
-
