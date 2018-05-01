@@ -1,5 +1,7 @@
 # CREATE VIRTUAL MACHINES
 
+
+
 ### Create simple VM
 ```bash
 vmName="myUbuntuVM"
@@ -10,6 +12,7 @@ az vm create
     --image $imageName
     --generate-ssh-keys
 ```
+
 
 ### Create resource group
 ```powershell
@@ -28,6 +31,7 @@ az group create
     --name $rgName
     --location $location
 ```
+
 
 
 ### Create virtual networks
@@ -79,6 +83,8 @@ az network vnet subnet create
     --address-prefix $Subnet2Prefix
 ```
 
+
+
 ### Create storage account
 ```powershell
 $saName = "examrefstoragew123123"
@@ -100,6 +106,8 @@ az storage account create
     --resource-group $rgName
 ```
 
+
+
 ### Create availability set
 ```powershell
 $avSet = New-AzureRmAvailabilitySet
@@ -118,6 +126,8 @@ az vm availability-set create
     --unmanaged
     -l $location
 ```
+
+
 
 ### Create public IP address
 ```powershell
@@ -139,6 +149,8 @@ az network public-ip create
     --dns-name $dnsRecord
     -l $location
 ```
+
+
 
 ### Create network security group
 ```powershell
@@ -200,6 +212,8 @@ az network nsg rule create
     --sourceport-range "*"
 ```
 
+
+
 ### Create network interface
 ```powershell
 $nicName = "ExamRefVM-NIC"
@@ -211,6 +225,7 @@ $nic = New-AzureRmNetworkInterface
     -PublicIpAddressId $pip.Id `
     -NetworkSecurityGroupId $nsg.ID
 ```
+
 ```bash
 nicname="WebVMNic1"
 az network nic create
@@ -224,6 +239,7 @@ az network nic create
 ```
 
 
+
 ### VM configure
 ```powershell
 $vmSize = "Standard_DS1_V2"
@@ -232,6 +248,8 @@ $vm = New-AzureRmVMConfig
     -VMSize $vmSize `
     -AvailabilitySetId $avSet.Id
 ```
+
+
 
 ### VM Operating system
 ```powershell
@@ -243,6 +261,8 @@ Set-AzureRmVMOperatingSystem
     -ProvisionVMAgent `
     -VM $vm
 ```
+
+
 
 ### VM source image
 ```powershell
@@ -264,6 +284,8 @@ Set-AzureRmVMOSDisk
     -VM $vm
 ```
 
+
+
 ### VM provisioning
 ```powershell
 New-AzureRmVM
@@ -271,6 +293,7 @@ New-AzureRmVM
     -Location $location
     -VM $vm
 ```
+
 ```bash
 imageName="Canonical:UbuntuServer:17.04:latest"
 vmSize="Standard_DS1_V2"
