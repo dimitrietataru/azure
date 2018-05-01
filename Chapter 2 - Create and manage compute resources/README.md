@@ -3,7 +3,7 @@
 |            ##            | Action               | PowerShell                         | Azure CLI                        |
 |:------------------------:|:--------------------:|:-----------------------------------|:---------------------------------|
 |      Virtual machine     | Create               | New-AzureRmVirtualMachine          | az vm create                     |
-|                          | Create from ARM      | New-AzureRmResourceGroupDeployment | az group deployment create       |
+|                          | Create from ARM      | New-AzureRmResourceGroupDeploym..  | az group deployment create       |
 |                          | Configure            | New-AzureRmVMConfig                | ---                              |
 |                          | Operating system     | New-AzureRmVMOperatingSystem       | ---                              |
 |                          | OS disk config       | Set-AzureRmVMOSDisk                | ---                              |
