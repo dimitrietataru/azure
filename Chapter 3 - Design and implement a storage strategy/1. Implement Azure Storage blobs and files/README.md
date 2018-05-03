@@ -27,7 +27,7 @@ az storage container create \
 
 
 
-UPLOAD A FILE
+### UPLOAD A FILE
 ```powershell
 $containerName = "[storage account container]"$blobName = "[blob name]"
 $localFileDirectory = "C:\SourceFolder"
