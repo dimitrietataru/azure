@@ -372,3 +372,4 @@ az network application-gateway waf-config set \
     --rule-set-type OWASP \
     --rule-set-version 3.0
 ```
+
