@@ -161,7 +161,7 @@ az network vnet peering list \
 
 
 
-### CREATE A NSG AND ASSOCIATONG WITH A SUBNET
+### CREATE A NSG AND ASSOCIATE WITH A SUBNET
 ```powershell
 # Build a new Inbound Rule to Allow TCP Traffic on Port 80 to the Subnet
 $rule1 = New-AzureRmNetworkSecurityRuleConfig `
